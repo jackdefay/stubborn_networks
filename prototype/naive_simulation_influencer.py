@@ -19,7 +19,7 @@ cs = 5
 sim_length = 200
 
 # list of openness values
-lambda_list = np.array([0.9]*n)
+lambda_list = np.array([0.9]*(n-1)+[0.1])
 
 Lambda = lambda_list*np.identity(n)
 
