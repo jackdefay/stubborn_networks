@@ -16,7 +16,7 @@ def generate_influencer_matrix(n=10, cs=5):
     # uniformly connected
     # A11 = (np.ones((n,n)) - np.identity(n))*0.1
     A11 = np.zeros((n,n))
-    print(A11)
+    # print(A11)
     # print(A11[n-1,:]+np.array([0.9]*(n-1)+[0]))
 
     # concatentate together
@@ -24,7 +24,7 @@ def generate_influencer_matrix(n=10, cs=5):
     # TODO: check if this should be rows or columns to have one individual influence many others
     A[:,n-1] = A11[:,n-1]+np.array([1]*(n-1)+[0])
     A[n-1,:] = np.array([1]*(n-1)+[0])
-    print(A)
+    # print(A)
 
 
     # and rescale to be row stochastic
@@ -37,7 +37,7 @@ def generate_influencer_matrix(n=10, cs=5):
 
     # the initial opinions of the system
     x0 = np.concatenate((np.random.sample(n-1)*0.5,np.random.sample(1)*0.5+0.5),axis=0)
-    print(A)
+    # print(A)
     return [A,Lambda,x0]
 
 
