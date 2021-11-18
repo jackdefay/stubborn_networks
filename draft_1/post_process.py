@@ -2,6 +2,7 @@ import numpy as np
 
 # re-normalizes the matrix to be row stochastic
 def normalize(A):
+    np.fill_diagonal(A,0)
     n=A.shape[0]
     row_sums = A@np.ones(n)
     inv_row_sums = np.divide(np.ones(n),row_sums)
@@ -30,4 +31,11 @@ def email_blast(A):
 # Simulates a targetted workshop, speech, or other low yield high impact intervention
 # returns: the post-intervention graph A
 def friendship(A):
+    augment = np.random.choice([0, 1], size=A.shape, p=[.7, .3])
+
+    A = A + augment
+
+    A = normalize(A)
+    print(A)
+
     return A
