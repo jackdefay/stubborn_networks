@@ -1,14 +1,5 @@
 import numpy as np
-
-# re-normalizes the matrix to be row stochastic
-def normalize(A):
-    np.fill_diagonal(A,0)
-    n=A.shape[0]
-    row_sums = A@np.ones(n)
-    inv_row_sums = np.divide(np.ones(n),row_sums)
-    A = A.T*inv_row_sums
-    A = A.T
-    return A
+from generate_cluster import normalize
 
 # Post processes the clustered network to add uniformly small random connections across the graph
 # returns: the post processed graph A
@@ -36,6 +27,6 @@ def friendship(A):
     A = A + augment
 
     A = normalize(A)
-    print(A)
+    # print(A)
 
     return A

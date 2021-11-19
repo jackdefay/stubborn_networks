@@ -1,5 +1,15 @@
 import numpy as np
 
+# re-normalizes the matrix to be row stochastic
+def normalize(A):
+    np.fill_diagonal(A,0)
+    n=A.shape[0]
+    row_sums = A@np.ones(n)
+    inv_row_sums = np.divide(np.ones(n),row_sums)
+    A = A.T*inv_row_sums
+    A = A.T
+    return A
+
 # n is the size of the matrix
 # cs is the cluster size
 # returns: an ajacency matrix of uniformly connected individuals with one stubborn influencer,
@@ -53,3 +63,10 @@ def generate_cluster(n=10, cs=5):
     x0=0
 
     return [A,Lambda,x0]
+
+def generate_uniform(n=10,cs=5):
+    A = np.ones((n,n))
+    A=normalize(A)
+
+    x0 = np.random.sample(n)
+    return [A,x0]
