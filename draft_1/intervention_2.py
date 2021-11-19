@@ -1,4 +1,4 @@
-import numpy as np
+import numpy as npA
 
 from  generate_cluster import generate_influencer_matrix
 from post_process import friendship

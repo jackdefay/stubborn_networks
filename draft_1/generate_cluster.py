@@ -38,10 +38,7 @@ def generate_influencer_matrix(n=10, cs=5):
 
 
     # and rescale to be row stochastic
-    row_sums = A@np.ones(n)
-    inv_row_sums = np.divide(np.ones(n),row_sums)
-    A = A.T*inv_row_sums
-    A = A.T
+    A=normalize(A)
 
     # print(A)
 
@@ -70,3 +67,25 @@ def generate_uniform(n=10,cs=5):
 
     x0 = np.random.sample(n)
     return [A,x0]
+
+# n must be an even number
+def generate_2_cluster(n=10):
+    # list of openness values
+    lambda_list = np.array([0.3]*n)
+
+    Lambda = lambda_list*np.identity(n)
+
+    # adjacency matrix, must be row stochastic
+    # uniformly connected
+    m = int(n/2)
+    A11 = (np.ones((m,m)) - np.identity(m))
+    A21 = np.zeros((m,m))
+
+    # concatentate together
+    A = np.concatenate((np.concatenate((A11,A21),axis=1),np.concatenate((A21,A11),axis=1)),axis=0)
+
+    A = normalize(A)
+
+    x0 = np.concatenate((np.random.sample(m)*0.1+0.9,np.random.sample(m)*0.1),axis=0)
+
+    return [A,Lambda,x0]
