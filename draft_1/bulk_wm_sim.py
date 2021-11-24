@@ -1,6 +1,6 @@
 import numpy as np
 import matplotlib.pyplot as plt
-from friedkin_johnsen_sim import run_sim
+from weighted_median_sim import run_sim
 
 # runs iteration number of trials of the weighted median simulation of an influencer matrix
 # returns: x, the list of the final opinions of each trial. size (n,iterations)
