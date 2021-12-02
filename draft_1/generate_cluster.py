@@ -68,8 +68,10 @@ def generate_uniform(n=10,cs=5):
 
 # generates the adjacency matrix for two completely separate clusters as a starting point for experiments
 # n must be an even number
+# xtrm is how extreme two opinions will be.  i.e xtrm = 0.1 generates clusters with group 1 [0,0.1], group 2 [0.9,1]
 # returns: the adjacency matrix, the influence matrix, and the randomized initial opinions (group 1 [0,0.5], group 2 [0.5,1])
-def generate_2_cluster(n=10):
+# edit: function is now generalized to generate clusters with opposing views at different extremes (xtrm)
+def generate_2_cluster(n=10, xtrm=0.5):
     # list of openness values
     lambda_list = np.array([0.3]*n)
 
@@ -86,6 +88,6 @@ def generate_2_cluster(n=10):
 
     A = normalize(A)
 
-    x0 = np.concatenate((np.random.sample(m)*0.1+0.9,np.random.sample(m)*0.1),axis=0)
+    x0 = np.concatenate((np.random.sample(m)*xtrm,np.random.sample(m)*xtrm+(1-xtrm)),axis=0)
 
     return [A,Lambda,x0]
