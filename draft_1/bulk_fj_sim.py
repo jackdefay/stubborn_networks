@@ -4,6 +4,7 @@ from friedkin_johnsen_sim import run_sim
 
 # runs iteration number of trials of the weighted median simulation of an influencer matrix
 # returns: x, the list of the final opinions of each trial. size (n,iterations)
+# on the plots iterations is labeled repetitions
 def bulk_sim_influencer(A, Lambda, n, sim_length=200, iterations=100):
     x = []
     for i in range(iterations):
@@ -43,5 +44,44 @@ def plot_std(x):
 
     # np.set_printoptions(precision=2)
     # plt.text(11,0.1,A,fontsize=6)
+
+    plt.show()
+
+# plots the opinion list over time and an insert for the adjacency matrix, A
+def plot_std2(x,x2):
+    # print(x)
+
+    std = np.std(x,axis=1)
+    std2 = np.std(x2,axis=1)
+    # print(std)
+
+    plt.hist(std,rwidth=0.9,alpha=0.5)
+    plt.hist(std2,rwidth=0.9,alpha=0.5)
+
+    plt.xlabel("std of sim after 200 iterations")
+    plt.ylabel("number of repetitions")
+    plt.title("Opinion Dynamics")
+
+    # np.set_printoptions(precision=2)
+    # plt.text(11,0.1,A,fontsize=6)
+    plt.legend(["email","friendship"])
+
+    plt.show()
+
+# plots the opinion list over time and an insert for the adjacency matrix, A
+def plot_std_n(xlist):
+    # print(x)
+
+    for x in xlist:
+        std = np.std(x,axis=1)
+        plt.hist(std,rwidth=0.9,alpha=0.5)
+
+    plt.xlabel("std of sim after 200 iterations")
+    plt.ylabel("number of repetitions")
+    plt.title("Opinion Dynamics")
+
+    # np.set_printoptions(precision=2)
+    # plt.text(11,0.1,A,fontsize=6)
+    plt.legend(["no intervention","email","friendship"])
 
     plt.show()
