@@ -38,7 +38,7 @@ def plot_std(x):
     plt.hist(std,rwidth=0.9)
 
     plt.xlabel("std of sim after 200 iterations")
-    plt.ylabel("number of iterations")
+    plt.ylabel("number of repetitions")
     plt.title("Opinion Dynamics")
 
     # np.set_printoptions(precision=2)
