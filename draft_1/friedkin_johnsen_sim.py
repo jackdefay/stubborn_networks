@@ -44,3 +44,29 @@ def plot_results(x,A):
     plt.text(11,0.1,A,fontsize=6)
 
     plt.show()
+
+def plot_results_n(xlist):
+    colorlist = ['blue', 'orange', 'green']
+    linelist = []
+    
+    for i in range(len(xlist)):
+        x=xlist[i]
+        c=colorlist[i]
+        plot_data = np.array(x).T
+
+        for row in plot_data:
+            line, = plt.plot(row, alpha=0.5, color=c)
+            linelist.append(line)
+
+    plt.xlabel("number of iterations")
+    plt.ylabel("opinion")
+    plt.title("Opinion Dynamics")
+
+    lines = [linelist[0],linelist[11],linelist[21]]
+
+    plt.legend(lines, ['no intervention', 'emails', 'friendship'])
+
+    # np.set_printoptions(precision=2)
+    # plt.text(11,0.1,A,fontsize=6)
+
+    plt.show()
