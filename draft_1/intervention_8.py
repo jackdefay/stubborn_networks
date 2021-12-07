@@ -1,4 +1,6 @@
+from matplotlib.pyplot import title
 import numpy as np
+from friedkin_johnsen_sim import plot_network
 
 from generate_cluster import generate_influencer_matrix, generate_uniform, generate_2_cluster
 from post_process import email_blast, friendship
@@ -18,13 +20,10 @@ n = 10
 cs = 5
 
 # A, Lambda, x0 = generate_influencer_matrix(n, cs)
-A, Lambda, x0 = generate_2_cluster(n)
-# print(A)
-
+A, Lambda, x0 = generate_2_cluster(n,0.1)
+# print("x0: ", x0)
 # print(A)
 # Lambda = 0
-
-# A = email_blast(A)
 
 A2 = email_blast(A,5)
 A3 = friendship(A,5)
@@ -35,5 +34,7 @@ x2 = run_sim(A2, Lambda, x0, n, sim_length)
 x3 = run_sim(A3, Lambda, x0, n, sim_length)
 
 # plot_results(x)
-
-plot_results_n([x,x2,x3])
+# plot_results_n([x,x2,x3])
+plot_network(A,x0,"No Intervention")
+plot_network(A2,x0,"Email Blast")
+plot_network(A3,x0,"Friendship")

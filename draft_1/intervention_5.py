@@ -17,14 +17,7 @@ cs = 5
 
 # A, Lambda, x0 = generate_influencer_matrix(n, cs)
 A, Lambda, x0 = generate_2_cluster(n)
-# print(A)
 
-# print(A)
-# Lambda = 0
-
-# A = email_blast(A)
-
-# A = email_blast(A)
 A = friendship(A)
 # print(A)
 

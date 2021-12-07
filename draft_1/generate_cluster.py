@@ -19,10 +19,10 @@ def normalize(A):
 # returns: an ajacency matrix of uniformly connected individuals with one stubborn influencer,
 # influence values,
 # initial opinions of the sytem
-def generate_influencer_matrix(n=10, cs=5):
+def generate_influencer_matrix(n=10, openness=0.5,xtrm=0.5,num_extremist=1):
 
     # list of openness values
-    lambda_list = np.array([0.9]*(n-1)+[0.1])
+    lambda_list = np.array([1-openness]*(n-1)+[openness])
 
     Lambda = lambda_list*np.identity(n)
 
@@ -37,7 +37,7 @@ def generate_influencer_matrix(n=10, cs=5):
     A=normalize(A)
 
     # the initial opinions of the system
-    x0 = np.concatenate((np.random.sample(n-1)*0.5,np.random.sample(1)*0.5+0.5),axis=0)
+    x0 = np.concatenate((np.random.sample(n-num_extremist)*xtrm,np.random.sample(num_extremist)*(xtrm)+(1-xtrm)),axis=0)
 
     # print(A)
     return [A,Lambda,x0]
@@ -61,6 +61,7 @@ def generate_cluster(n=10, cs=5):
 # returns: the matrix and a randomly initialized set of initial opinions between [0,1]
 def generate_uniform(n=10,cs=5):
     A = np.ones((n,n))
+    np.fill_diagonal(A,0)
     A=normalize(A)
 
     x0 = np.random.sample(n)
@@ -82,6 +83,8 @@ def generate_2_cluster(n=10, xtrm=0.5):
     m = int(n/2)
     A11 = (np.ones((m,m)) - np.identity(m))
     A21 = np.zeros((m,m))
+
+    #the masses
 
     # concatentate together
     A = np.concatenate((np.concatenate((A11,A21),axis=1),np.concatenate((A21,A11),axis=1)),axis=0)

@@ -1,4 +1,5 @@
 import numpy as np
+from friedkin_johnsen_sim import plot_network
 
 from  generate_cluster import generate_influencer_matrix, generate_uniform
 from post_process import email_blast
@@ -23,7 +24,8 @@ Lambda = 0
 
 x = run_sim(A, Lambda, x0, n, sim_length)
 
-plot_results(x, A)
+# plot_results(x, A)
+plot_network(A,x0,"intervention3")
 
 # A = email_blast(A)
 

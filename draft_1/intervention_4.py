@@ -18,14 +18,8 @@ cs = 5
 A, Lambda, x0 = generate_influencer_matrix(n, cs)
 # print(A)
 
-# print(A)
-# Lambda = 0
-
-# A = email_blast(A)
-
 # A = email_blast(A)
 A = friendship(A)
-print(A)
 
 x = run_sim(A, Lambda, x0, n, sim_length)
 

@@ -32,14 +32,11 @@ def bulk_sim_2_cluster(A, Lambda, n, sim_length=200, iterations=100):
 # plots the opinion list over time and an insert for the adjacency matrix, A
 def plot_std(x):
     # print(x)
-
     std = np.std(x,axis=1)
     # print(std)
-
     plt.hist(std,rwidth=0.9)
-
-    plt.xlabel("std of sim after 200 iterations")
-    plt.ylabel("number of repetitions")
+    plt.xlabel("Standard Dev Final Opinions")
+    plt.ylabel("Number of Repetitions")
     plt.title("Opinion Dynamics")
 
     # np.set_printoptions(precision=2)
@@ -69,7 +66,7 @@ def plot_std2(x,x2):
     plt.show()
 
 # plots the opinion list over time and an insert for the adjacency matrix, A
-def plot_std_n(xlist):
+def plot_std_n(xlist,legend_list=["no intervention","email","friendship"]):
     # print(x)
 
     for x in xlist:
@@ -82,6 +79,6 @@ def plot_std_n(xlist):
 
     # np.set_printoptions(precision=2)
     # plt.text(11,0.1,A,fontsize=6)
-    plt.legend(["no intervention","email","friendship"])
+    plt.legend(legend_list)
 
     plt.show()
